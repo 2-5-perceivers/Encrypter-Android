@@ -11,8 +11,8 @@ android {
         applicationId "com.adorkw.encrypterandroid"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "0.1 beta"
+        versionCode 2
+        versionName "0.2b"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
