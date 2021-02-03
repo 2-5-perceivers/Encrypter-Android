@@ -14,7 +14,6 @@ add_library(
         encrypterlib
         SHARED
         encrypter/Encrypter.cpp
-        encrypter/textTransform/text_transform.cpp
         encrypter/baseChanger/baseChanger.cpp
 )
 
@@ -43,7 +42,6 @@ add_library(
         encrypterlib_jni
         SHARED
         android_wrapper/com_adorkw_encrypterandroid_Encrypter.cpp
-        android_wrapper/com_adorkw_encrypterandroid_Encrypter_Companion.cpp
 )
 
 target_link_libraries(

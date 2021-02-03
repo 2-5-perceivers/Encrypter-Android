@@ -14,7 +14,7 @@ extern "C" {
  * Signature: (Ljava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_adorkw_encrypterandroid_Encrypter_nativeCreateObject
-  (JNIEnv *, jobject, jstring);
+  (JNIEnv *, jobject, jint keyLen);
 
 /*
  * Class:     com_adorkw_encrypterandroid_Encrypter
@@ -22,7 +22,7 @@ JNIEXPORT jlong JNICALL Java_com_adorkw_encrypterandroid_Encrypter_nativeCreateO
  * Signature: (JLjava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_adorkw_encrypterandroid_Encrypter_encrypt
-  (JNIEnv* env, jobject, jlong nativeObjectHandle, jstring s);
+  (JNIEnv* env, jobject, jlong nativeObjectHandle, jstring text, jstring key);
 
 /*
  * Class:     com_adorkw_encrypterandroid_Encrypter
@@ -30,23 +30,7 @@ JNIEXPORT jstring JNICALL Java_com_adorkw_encrypterandroid_Encrypter_encrypt
  * Signature: (JLjava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_adorkw_encrypterandroid_Encrypter_decrypt
-  (JNIEnv* env, jobject, jlong nativeObjectHandle, jstring s);
-
-/*
- * Class:     com_adorkw_encrypterandroid_Encrypter
- * Method:    getKey
- * Signature: (J)Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_adorkw_encrypterandroid_Encrypter_getKey
-  (JNIEnv* env, jobject , jlong nativeObjectHandle);
-
-/*
- * Class:     com_adorkw_encrypterandroid_Encrypter
- * Method:    setKey
- * Signature: (JLjava/lang/String;)Ljava/lang/Void;
- */
-JNIEXPORT jobject JNICALL Java_com_adorkw_encrypterandroid_Encrypter_setKey
-  (JNIEnv* env, jobject, jlong nativeObjectHandle, jstring s);
+  (JNIEnv* env, jobject, jlong nativeObjectHandle, jstring text, jstring key);
 
 #ifdef __cplusplus
 }

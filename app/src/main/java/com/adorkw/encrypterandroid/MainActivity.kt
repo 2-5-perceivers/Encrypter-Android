@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var copyBT: Button
     lateinit var encrypt: Button
     lateinit var decrypt: Button
+    lateinit var encrypter: Encrypter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         copyBT = findViewById(R.id.buttonCopy)
         encrypt = findViewById(R.id.buttonEncrypt)
         decrypt = findViewById(R.id.buttonDecrypt)
+
+        encrypter = Encrypter()
 
         copyBT.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
@@ -44,12 +47,12 @@ class MainActivity : AppCompatActivity() {
         })
         encrypt.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                outputET.setText(Encrypter(keyET.text.toString()).encrypt(inputET.text.toString()))
+                outputET.setText(encrypter.encrypt(inputET.text.toString(), keyET.text.toString()))
             }
         })
         decrypt.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                outputET.setText(Encrypter(keyET.text.toString()).decrypt(inputET.text.toString()))
+                outputET.setText(encrypter.decrypt(inputET.text.toString(), keyET.text.toString()))
             }
         })
     }

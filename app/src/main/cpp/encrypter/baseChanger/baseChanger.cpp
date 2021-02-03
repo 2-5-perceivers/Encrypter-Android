@@ -6,14 +6,6 @@ using namespace std;
 int hex_value(unsigned char hex_digit);
 //////////////////////////////////////
 
-string toDeca(const string& s){
-    string deca;
-    stringstream ss;
-    for (char i : s)
-        ss << (int)i;
-    ss >> deca;
-    return deca;
-}
 
 string toHex(const string& s){
     static const char hex_digits[] = "0123456789ABCDEF";
@@ -24,19 +16,6 @@ string toHex(const string& s){
         output.push_back(hex_digits[c & 15]);
     }
     return output;
-}
-
-string toBinary(const string& s){
-    string binary;
-    for (int i = 0; i < s.size(); i++){
-        stringstream ss;
-        ss << bitset<8>(s.c_str()[i]);
-        string news, s2;
-        ss >> news;
-        s2 = binary + news;
-        binary = s2;
-    }
-    return binary;
 }
 
 string toCaesar(const string& s, short key){
@@ -50,52 +29,19 @@ string toCaesar(const string& s, short key){
             result += char(int(i+key-97)%26 + 97);
         else
             result += i;
-    } 
+    }
     return result;
 }
 
 string fromHex(string s){
     const auto len = s.length();
-    if (len & 1) throw std::invalid_argument("odd length");
+    if (len & 1) throw std::invalid_argument("This might not be hexadecimal or it is partial");
     string output;
     output.reserve(len / 2);
     for (auto it = s.begin(); it != s.end(); ){
         int hi = hex_value(*it++);
         int lo = hex_value(*it++);
         output.push_back(hi << 4 | lo);
-    }
-    return output;
-}
-
-string fromBinary(const string& s){
-    string text;
-    stringstream stream(s);
-    while (stream.good()) {
-        bitset<8> bits;
-        stream >> bits;
-        text += char(bits.to_ulong());
-    }
-    return text.substr(0, text.size()-1);
-}
-
-string fromDeca(string s){
-    string output;
-    for (int i = 0; i < s.length();){
-        if (s[i] == *"1"){
-            string m(s.substr(i, 3));
-            stringstream number(m);
-            int n = 0;
-            number >> n;
-            output += (char)n;
-            i += 3;
-        } else {
-            string m(s.substr(i, 2));
-            stringstream number(m);
-            int n = 0;
-            number >> n;
-            output += (char)n;
-            i += 2;
-        }
     }
     return output;
 }
