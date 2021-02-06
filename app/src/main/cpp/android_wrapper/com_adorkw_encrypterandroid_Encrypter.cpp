@@ -79,7 +79,11 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_adorkw_encrypterandroid_Encrypter_
     }
     auto* jniKey = (unsigned char *) s_key.c_str();
     auto* input = (unsigned char *) s_input.c_str();
-    output = reinterpret_cast<char*>(encrypterInstance->decrypt(input, s_input.length(), jniKey));
+    try{
+        output = reinterpret_cast<char*>(encrypterInstance->decrypt(input, s_input.length(), jniKey));
+    } catch (...) {
+        output = "Decryption failed";
+    }
     if (failed){
         return env->NewStringUTF(reason.c_str());
     } else {

@@ -24,5 +24,9 @@ class Encrypter(keyLen: Int = 256) {
 
     init {
         nativeObjectHandle = nativeCreateObject(keyLen)
+        if (nativeObjectHandle == 0.toLong()){
+            throw error("creating object failed")
+        }
+
     }
 }
